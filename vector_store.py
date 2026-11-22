@@ -1,12 +1,10 @@
 
 import chromadb
 
-# Create a local, persistent vector database
 client = chromadb.PersistentClient(
     path="./chroma_db"
 )
 
-# Create or reuse a collection
 collection = client.get_or_create_collection(
     name="document_chunks"
 )
@@ -17,11 +15,24 @@ def store_chunks(chunks):
         return
 
     collection.upsert(
-        ids=[str(chunk["chunk_id"]) for chunk in chunks],
-        embeddings=[chunk["embedding"] for chunk in chunks],
-        documents=[chunk["text"] for chunk in chunks],
+        ids=[
+            f"{chunk['document_id']}_{chunk['chunk_id']}"
+            for chunk in chunks
+        ],
+        embeddings=[
+            chunk["embedding"]
+            for chunk in chunks
+        ],
+        documents=[
+            chunk["text"]
+            for chunk in chunks
+        ],
         metadatas=[
-            {"page": chunk["page"]}
+            {
+                "page": chunk["page"],
+                "document_id": chunk["document_id"],
+                "filename": chunk["filename"]
+            }
             for chunk in chunks
         ]
     )
@@ -45,6 +56,8 @@ def search_chunks(query_embedding, top_k=3):
             "chunk_id": results["ids"][0][i],
             "text": results["documents"][0][i],
             "page": results["metadatas"][0][i]["page"],
+            "document_id": results["metadatas"][0][i]["document_id"],
+            "filename": results["metadatas"][0][i]["filename"],
             "distance": results["distances"][0][i]
         })
 

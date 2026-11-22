@@ -29,3 +29,15 @@ def generate_embeddings(chunks):
         })
 
     return results
+
+
+def embed_query(query):
+    """
+    Generate an embedding vector for a user query.
+    """
+    embedding = model.encode(
+        query,
+        normalize_embeddings=True
+    )
+
+    return embedding.tolist()
