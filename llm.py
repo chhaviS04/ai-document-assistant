@@ -1,4 +1,4 @@
-
+from fastapi import HTTPException
 from google import genai
 
 # Initialize Gemini client using the API key
@@ -43,9 +43,18 @@ def generate_answer(query, retrieved_chunks):
     Answer:
     """
 
-    response = client.models.generate_content(
-        model="gemini-3.6-flash",
-        contents=prompt
-    )
+    try:
+        response = client.models.generate_content(
+            model="gemini-3.6-flash",
+            contents=prompt
+        )
 
-    return response.text
+        return response.text
+
+    except Exception as e:
+        print(f"Gemini API Error: {e}")
+
+        raise HTTPException(
+            status_code=503,
+            detail="The AI service is temporarily unavailable. Please try again later."
+        )    
