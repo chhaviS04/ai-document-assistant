@@ -6,6 +6,7 @@ from io import BytesIO
 import pytesseract
 import pypdfium2 as pdfium
 import uuid
+from fastapi.middleware.cors import CORSMiddleware
 
 from chunking import chunk_pages
 from embeddings import generate_embeddings, embed_query
@@ -14,6 +15,13 @@ from llm import generate_answer
 
 
 app = FastAPI(title="AI Document Assistant")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # Configure Tesseract OCR

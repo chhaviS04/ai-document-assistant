@@ -6,3 +6,32 @@ chroma_db/
 .env
 *.pdf
 .DS_Store
+
+# Node / React
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Python testing / tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment variants
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# OS files
+Thumbs.db
+desktop.ini
+
+# IDE
+.idea/
+*.swp
+*.swo

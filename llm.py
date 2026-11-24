@@ -1,3 +1,5 @@
+
+import time
 from fastapi import HTTPException
 from google import genai
 
@@ -43,18 +45,32 @@ def generate_answer(query, retrieved_chunks):
     Answer:
     """
 
-    try:
-        response = client.models.generate_content(
-            model="gemini-3.6-flash",
-            contents=prompt
-        )
+    # Retry configuration
+    max_retries = 3
+    retry_delays = [2, 4, 8]
 
-        return response.text
+    for attempt in range(max_retries):
+        try:
+            response = client.models.generate_content(
+                model="gemini-3.6-flash",
+                contents=prompt
+            )
 
-    except Exception as e:
-        print(f"Gemini API Error: {e}")
+            return response.text
 
-        raise HTTPException(
-            status_code=503,
-            detail="The AI service is temporarily unavailable. Please try again later."
-        )    
+        except Exception as e:
+            print(f"Gemini API Error (attempt {attempt + 1}): {e}")
+
+            if attempt < max_retries - 1:
+                wait_time = retry_delays[attempt]
+                print(f"Retrying in {wait_time} seconds...")
+                time.sleep(wait_time)
+
+            else:
+                raise HTTPException(
+                    status_code=503,
+                    detail=(
+                        "The AI service is temporarily unavailable. "
+                        "Please try again later."
+                    )
+                )
