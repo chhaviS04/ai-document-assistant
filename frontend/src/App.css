@@ -848,3 +848,10 @@
     opacity: 1;
   }
 }
+
+.upload-box.dragging {
+  border: 2px dashed #8b5cf6;
+  background: rgba(139, 92, 246, 0.08);
+  transform: scale(1.01);
+  transition: all 0.2s ease;
+}

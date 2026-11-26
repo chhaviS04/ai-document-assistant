@@ -16,6 +16,7 @@ function App() {
   const [deletingId, setDeletingId] = useState(null);
   const [deleteMessage, setDeleteMessage] = useState("");
   const [copiedIndex, setCopiedIndex] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
 
   // Auto-scroll reference
   const chatEndRef = useRef(null);
@@ -44,6 +45,29 @@ function App() {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chatMessages, asking]);
 
+  function handleDragOver(e) {
+    e.preventDefault();
+    setIsDragging(true);
+  }
+
+  function handleDragLeave(e) {
+    e.preventDefault();
+    setIsDragging(false);
+  }
+
+  function handleDrop(e) {
+  e.preventDefault();
+  setIsDragging(false);
+
+  const file = e.dataTransfer.files[0];
+
+  if (file && file.type === "application/pdf") {
+    setSelectedFile(file);
+    setUploadMessage("");
+  } else if (file) {
+    setUploadMessage("Please select a PDF file.");
+  }
+}
   async function handleUpload() {
     if (!selectedFile) {
       setUploadMessage("Please select a PDF first.");
@@ -265,7 +289,12 @@ function App() {
               <span>PDF files only</span>
             </div>
 
-            <div className="upload-box">
+            <div
+              className={`upload-box ${isDragging ? "dragging" : ""}`}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+            >
               <div className="upload-icon">↑</div>
 
               <h3>Drop your PDF here</h3>
