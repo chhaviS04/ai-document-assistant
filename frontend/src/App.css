@@ -855,3 +855,347 @@
   transform: scale(1.01);
   transition: all 0.2s ease;
 }
+
+
+/* ==============================
+   DocuMind UI Polish
+============================== */
+
+/* Better content spacing */
+.content {
+  max-width: 1150px;
+  padding: 42px 48px;
+}
+
+/* Welcome section */
+.welcome {
+  margin-bottom: 32px;
+}
+
+.welcome h1 {
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: -1.4px;
+}
+
+.welcome p {
+  max-width: 560px;
+}
+
+/* Upload section */
+.upload-box {
+  position: relative;
+  background: linear-gradient(
+    145deg,
+    #ffffff,
+    #faf9ff
+  );
+  border: 2px dashed #d6d0f5;
+  border-radius: 20px;
+  min-height: 230px;
+  padding: 32px 24px;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.upload-box:hover {
+  border-color: #8b5cf6;
+  background: #faf8ff;
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.06);
+  transform: translateY(-2px);
+}
+
+/* Upload icon */
+.upload-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    #eee9ff,
+    #e4ddff
+  );
+  color: #7557e8;
+  font-size: 28px;
+  margin-bottom: 18px;
+  transition: transform 0.25s ease;
+}
+
+.upload-box:hover .upload-icon {
+  transform: translateY(-3px);
+}
+
+/* Upload heading */
+.upload-box h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #25243a;
+}
+
+.upload-box p {
+  line-height: 1.6;
+}
+
+/* Buttons */
+.browse-button,
+.upload-action {
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.browse-button:hover,
+.upload-action:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
+}
+
+/* Drag and drop */
+.upload-box.dragging {
+  border-color: #7557e8;
+  background: #f5f1ff;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.08);
+  transform: scale(1.005);
+}
+
+/* Responsive adjustment */
+@media (max-width: 800px) {
+  .content {
+    padding: 32px 24px;
+  }
+
+  .welcome h1 {
+    font-size: 34px;
+  }
+}
+
+/* ==============================
+   Document Card Polish
+============================== */
+
+.document-list {
+  gap: 14px;
+}
+
+.document-card {
+  background: #ffffff;
+  border: 1px solid #e8e7f0;
+  border-radius: 16px;
+  padding: 20px;
+  gap: 16px;
+  box-shadow: 0 2px 6px rgba(30, 27, 75, 0.025);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.document-card:hover {
+  transform: translateY(-2px);
+  border-color: #c8baf8;
+  box-shadow: 0 6px 18px rgba(30, 27, 75, 0.06);
+}
+
+.document-card.selected {
+  border: 2px solid #8b5cf6;
+  background: #fcfbff;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.08);
+}
+
+/* PDF icon */
+.document-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #fff1f2, #ffe4e6);
+  color: #dc5555;
+}
+
+/* Document title */
+.document-info h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #29283b;
+  line-height: 1.5;
+}
+
+.document-info p {
+  font-size: 12px;
+  color: #85879a;
+}
+
+/* Delete action */
+.delete-document {
+  transition: all 0.2s ease;
+}
+
+.delete-document:hover {
+  transform: translateY(-1px);
+}
+
+
+/* ================================
+   DOCUMIND HISTORY UI
+================================ */
+
+.history-section {
+  width: 100%;
+  animation: historyFadeIn 0.25s ease;
+}
+
+@keyframes historyFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.history-section .section-heading {
+  margin-top: 32px;
+  margin-bottom: 20px;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.history-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 24px;
+  background: #ffffff;
+  border: 1px solid #e8e8f0;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(30, 30, 60, 0.03);
+}
+
+.history-card:hover {
+  border-color: #c7bfff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(91, 76, 190, 0.08);
+}
+
+.history-card-icon {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: #f0edff;
+  color: #6c5ce7;
+  font-size: 23px;
+}
+
+.history-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.history-card-info h3 {
+  margin: 0 0 8px;
+  color: #222336;
+  font-size: 16px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.history-preview {
+  margin: 0 0 10px;
+  color: #72738a;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.history-meta {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #f5f4fa;
+  color: #77758e;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.history-open {
+  border: 1px solid #e5e1ff;
+  border-radius: 10px;
+  padding: 10px 16px;
+  background: #f5f3ff;
+  color: #6554d8;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.history-open:hover {
+  background: #6c5ce7;
+  color: #ffffff;
+  border-color: #6c5ce7;
+}
+
+.history-empty {
+  margin-top: 10px;
+}
+
+.history-empty .upload-action {
+  margin-top: 20px;
+}
+
+/* Responsive History Cards */
+
+@media (max-width: 700px) {
+  .history-card {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .history-card-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    font-size: 19px;
+  }
+
+  .history-card-info h3 {
+    font-size: 14px;
+  }
+
+  .history-preview {
+    font-size: 13px;
+  }
+
+  .history-open {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .history-card {
+    flex-wrap: wrap;
+  }
+
+  .history-open {
+    margin-left: auto;
+  }
+}
